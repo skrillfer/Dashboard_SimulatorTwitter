@@ -1,0 +1,31 @@
+{
+  "name": "dashboard_twitter",
+  "version": "1.0.0",
+  "description": "monitored traffic sended from app traffic generator",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skrillfer/Dashboard_SimulatorTwitter.git"
+  },
+  "keywords": [
+    "dashboard",
+    "twitter",
+    "simulator",
+    "data",
+    "analytics"
+  ],
+  "author": "Luis Fernando Ramirez Santos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skrillfer/Dashboard_SimulatorTwitter/issues"
+  },
+  "homepage": "https://github.com/skrillfer/Dashboard_SimulatorTwitter#readme"
+}
