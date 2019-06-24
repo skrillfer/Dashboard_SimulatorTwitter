@@ -16,6 +16,10 @@ app.get('/', function (req, res) {
   //res.sendFile(__dirname+'/public/src/login.html');
 });
 
+app.get('/home', function (req, res) {
+  res.sendFile(__dirname+'/public/src/home.html');
+});
+
 app.post('/data', function (req, res) {    
     //do stuff with the data here
     console.log(req.body)
