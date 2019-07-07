@@ -6,8 +6,9 @@ var sourceChartPie = null;
 var sourceChartHis = null; 
 function updateDashboard()
 {
-    createPieChart();
-    createHistrogramChart();
+    //createPieChart();
+    //createHistrogramChart();
+    clickButtonUpdate();
 }
 
 function createPieChart(){
@@ -77,4 +78,9 @@ function zoomChart(id)
         zoomChartReference = new Chart(document.getElementById('elementChartZoom'), sourceChartHis);
     }
     
+}
+
+function clickButtonUpdate()
+{
+    socket.emit('update_dashboard',{});
 }

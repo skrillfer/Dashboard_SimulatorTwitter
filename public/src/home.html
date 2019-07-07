@@ -2,6 +2,8 @@
 <html lang="en">
 
   <head>
+    <script src="/socket.io/socket.io.js"></script>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -38,7 +40,9 @@
     <!--
       Javascript code files
     -->
+    <script src="/javascript/socket_client.js"></script>
     <script src="/javascript/client.js"></script>
+    
     <title>Dashboard - Twitter Traffic</title>
   </head>
 
@@ -94,7 +98,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total de Tweets</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="elementTweets">$40,000</div>
                     </div>
                   </div>
                 </div>
@@ -108,7 +112,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total de Usuarios</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="elementUsers">$215,000</div>
                     </div>
                     
                   </div>

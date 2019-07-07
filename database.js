@@ -1,3 +1,4 @@
+var dataJson={};
 const mysql = require('mysql');
 
 let connection = mysql.createConnection({
@@ -12,14 +13,37 @@ connection.connect(function(err) {
     console.error('Error connecting: ' + err.stack);
     return;
   }
-  console.log('Connected as thread id: ' + connection.threadId);
-  console.log('insertando........');
-  insert();
-  console.log('Seleccionando.......');
-  select();
 });
 
 
+
+
+function getStatistics(socket)
+{
+  
+  connection.query(
+    "SELECT COUNT(*) as count FROM `binnacle` ",
+    function(error, results, fields) {
+      if (error) throw error ;
+      socket.emit('updateCountTweets',{'countTweets':results[0].count});
+    }
+  );
+  
+}
+
+
+function getUsers(socket)
+{
+  
+  connection.query(
+    "SELECT COUNT(DISTINCT(user)) as count FROM `binnacle` ",
+    function(error, results, fields) {
+      if (error) throw error ;
+      socket.emit('updateCountUsers',{'countUsers':results[0].count});
+      
+    }
+  );
+}
 
 function select()
 {
@@ -48,8 +72,8 @@ function insert()
   });
 }
 
-module.exports = connection;
-
+module.exports.getStatistics = getStatistics;
+module.exports.getUsers      = getUsers;
 /*
 var config = Knex({
   client: 'mysql',

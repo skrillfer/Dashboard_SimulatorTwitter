@@ -2,9 +2,11 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
+var io = require('socket.io')(server);
+
 const path  = require('path')
 
-const connection = require('./database');
+const databaseReference = require('./database');
 
 //connection.mysqlDemo();
 
@@ -32,6 +34,14 @@ app.post('/data', function (req, res) {
     //do stuff with the data here
     console.log(req.body)
     res.send("process complete");
+});
+
+io.on('connection', function(socket) {
+	socket.on('update_dashboard', function(data) {
+    var v1 = databaseReference.getStatistics(socket);
+    var v2 = databaseReference.getUsers(socket);
+    
+  });
 });
 
 server.listen(3000, function() {
