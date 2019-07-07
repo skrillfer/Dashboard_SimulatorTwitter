@@ -35,20 +35,21 @@ function createPieChart(listUser,listCount,listColor){
     pieChart = new Chart(document.getElementById('elementPieChart'), sourceChartPie);
 }
 
-function createHistrogramChart()
+function createHistrogramChart(listTag,listCount,listColor)
 {
+    listCount.push(0);
     if (histoChart){
         histoChart.destroy();
     }
     sourceChartHis = {
         type: 'bar',
         data: {
-          labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+          labels: listTag,
           datasets: [
             {
               label: "Population (millions)",
-              backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-              data: [2478,5267,734,784,433]
+              backgroundColor: listColor,
+              data: listCount
             }
           ]
         },
@@ -56,7 +57,7 @@ function createHistrogramChart()
           legend: { display: false },
           title: {
             display: true,
-            text: 'Predicted world population (millions) in 2050'
+            text: 'Tags vs Cantidad'
           }
         }
     };

@@ -44,6 +44,7 @@ io.on('connection', function(socket) {
     databaseReference.getHighestOccuranceUsers(socket);
     databaseReference.getHighestOccuranceTags(socket);
     databaseReference.getAllHighestOccuranceUsers(socket);
+    databaseReference.getAllHighestOccuranceTags(socket);
     
   });
 });

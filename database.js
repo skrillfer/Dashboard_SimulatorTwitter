@@ -99,6 +99,26 @@ function getHighestOccuranceTags(socket)
   );
 }
 
+function getAllHighestOccuranceTags(socket)
+{
+  connection.query(
+    "SELECT tag, count(*) as count FROM `binnacle` GROUP BY tag ORDER BY count DESC",
+    function(error, results, fields) {
+      if (error) throw error ;
+      listTag  = [];
+      listCount = [];
+      listColor = [];
+      results.forEach(element => {
+        listTag.push(element.tag);
+        listCount.push(element.count);
+        listColor.push('#'+(Math.random()*0xFFFFFF<<0).toString(16));
+      });
+      socket.emit('updateAllOccuranceTags',{'listTag':listTag,'listCount':listCount,'listColor':listColor});
+    }
+  );
+}
+
+
 function select()
 {
   connection.query(
@@ -133,5 +153,6 @@ module.exports.getHighestOccuranceUsers  = getHighestOccuranceUsers;
 module.exports.getAllHighestOccuranceUsers  = getAllHighestOccuranceUsers;
 
 module.exports.getHighestOccuranceTags   = getHighestOccuranceTags;
+module.exports.getAllHighestOccuranceTags  = getAllHighestOccuranceTags;
 
 module.exports.insertRow                 = insertRow;

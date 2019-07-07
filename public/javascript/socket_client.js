@@ -21,6 +21,9 @@ socket.on('updateAllOccuranceUsers', function(data) {
     createPieChart(data.listUser,data.listCount,data.listColor);    
 });
 
+socket.on('updateAllOccuranceTags', function(data) {
+    createHistrogramChart(data.listTag,data.listCount,data.listColor);    
+});
 
 socket.on('updateOccuranceTags', function(data) {
     document.getElementById("elementOccuranceTags").textContent = 'tag:'+data.occuranceTag+"   Count:"+data.occuranceCount;
