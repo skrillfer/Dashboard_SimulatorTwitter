@@ -7,3 +7,16 @@ socket.on('updateCountUsers', function(data) {
 socket.on('updateCountTweets', function(data) {
     document.getElementById("elementTweets").textContent = data.countTweets;
 });
+
+socket.on('updateCountTags', function(data) {
+    document.getElementById("elementTags").textContent = data.countTags;
+});
+
+
+socket.on('updateOccuranceUsers', function(data) {
+    document.getElementById("elementOccuranceUsers").textContent = 'user:'+data.occuranceUser+"   Count:"+data.occuranceCount;
+});
+
+socket.on('updateOccuranceTags', function(data) {
+    document.getElementById("elementOccuranceTags").textContent = 'tag:'+data.occuranceTag+"   Count:"+data.occuranceCount;
+});

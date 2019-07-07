@@ -45,6 +45,41 @@ function getUsers(socket)
   );
 }
 
+function getTags(socket)
+{  
+  connection.query(
+    "SELECT COUNT(DISTINCT(tag)) as count FROM `binnacle` ",
+    function(error, results, fields) {
+      if (error) throw error ;
+      socket.emit('updateCountTags',{'countTags':results[0].count});     
+    }
+  );
+}
+
+
+function getHighestOccuranceUsers(socket)
+{
+  connection.query(
+    "SELECT user, count(*) as count FROM `binnacle` GROUP BY user ORDER BY count DESC LIMIT 1",
+    function(error, results, fields) {
+      if (error) throw error ;
+      socket.emit('updateOccuranceUsers',{'occuranceUser':results[0].user,'occuranceCount':results[0].count});     
+    }
+  );
+}
+
+function getHighestOccuranceTags(socket)
+{
+  connection.query(
+    "SELECT tag, count(*) as count FROM `binnacle` GROUP BY tag ORDER BY count DESC LIMIT 1",
+    function(error, results, fields) {
+      if (error) throw error ;
+      console.log(results);
+      socket.emit('updateOccuranceTags',{'occuranceTag':results[0].tag,'occuranceCount':results[0].count});     
+    }
+  );
+}
+
 function select()
 {
   connection.query(
@@ -74,32 +109,6 @@ function insert()
 
 module.exports.getStatistics = getStatistics;
 module.exports.getUsers      = getUsers;
-/*
-var config = Knex({
-  client: 'mysql',
-  version: '5.7',
-  connection: {
-    socketPath: '/cloudsql/skrillferdb:us-central1:bdskrillferstudent',
-    host : '35.193.89.234',
-    user : 'root',
-    password: process.env.SQL_PASSWORD,
-    database : 'trafficTwitterDB',
-  }
-});
-
-var cnx = mysql.createConnection(config);
-
-
-cnx.connect(function(err) {
-  if (err) {
-    console.error('Error connecting: ' + err.stack);
-    return;
-  }
-  console.log('Connected as thread id: ' + connection.threadId);
-});
-
-//get_projects();
-function get_projects() {
-  /*cnx.select('name').from('binnacle')
-  .then(data => console.log(data));
-}*/
+module.exports.getTags       = getTags;
+module.exports.getHighestOccuranceUsers  = getHighestOccuranceUsers;
+module.exports.getHighestOccuranceTags   = getHighestOccuranceTags;

@@ -38,9 +38,11 @@ app.post('/data', function (req, res) {
 
 io.on('connection', function(socket) {
 	socket.on('update_dashboard', function(data) {
-    var v1 = databaseReference.getStatistics(socket);
-    var v2 = databaseReference.getUsers(socket);
-    
+    databaseReference.getStatistics(socket);
+    databaseReference.getUsers(socket);
+    databaseReference.getTags(socket);
+    databaseReference.getHighestOccuranceUsers(socket);
+    databaseReference.getHighestOccuranceTags(socket);
   });
 });
 
