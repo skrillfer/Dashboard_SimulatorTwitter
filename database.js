@@ -13,6 +13,7 @@ connection.connect(function(err) {
     console.error('Error connecting: ' + err.stack);
     return;
   }
+  //insertRow();
 });
 
 
@@ -68,13 +69,31 @@ function getHighestOccuranceUsers(socket)
   );
 }
 
+function getAllHighestOccuranceUsers(socket)
+{
+  connection.query(
+    "SELECT user, count(*) as count FROM `binnacle` GROUP BY user ORDER BY count DESC",
+    function(error, results, fields) {
+      if (error) throw error ;
+      listUser  = [];
+      listCount = [];
+      listColor = [];
+      results.forEach(element => {
+        listUser.push(element.user);
+        listCount.push(element.count);
+        listColor.push('#'+(Math.random()*0xFFFFFF<<0).toString(16));
+      });
+      socket.emit('updateAllOccuranceUsers',{'listUser':listUser,'listCount':listCount,'listColor':listColor});
+    }
+  );
+}
+
 function getHighestOccuranceTags(socket)
 {
   connection.query(
     "SELECT tag, count(*) as count FROM `binnacle` GROUP BY tag ORDER BY count DESC LIMIT 1",
     function(error, results, fields) {
       if (error) throw error ;
-      console.log(results);
       socket.emit('updateOccuranceTags',{'occuranceTag':results[0].tag,'occuranceCount':results[0].count});     
     }
   );
@@ -92,13 +111,13 @@ function select()
 }
 
 
-function insert()
+function insertRow()
 {
   var sql = "INSERT INTO binnacle (binnacle_id, name,user,txt,tag) VALUES ?";
   var values = [
-    [0, 'luis fernando ramirez santos', 'skrillfer','pasandola bien porque hoy es #viernes','#viernes'],
-    [0, 'Juan santos cabrera', 'skrillfer','pasandola bien porque hoy es #viernes','#viernes'],
-    [0, 'Ismael Santos Cabrera', 'skrillfer','pasandola bien porque hoy es #viernes','#viernes']
+    [0, 'luis fernando ramirez santos', 'sxxq1','pasandola bien porque hoy es #viernes','#viernes'],
+    [0, 'Juan santos cabrera', 'sxxq1','pasandola bien porque hoy es #viernes','#viernes'],
+    [0, 'Ismael Santos Cabrera', 'sxxq1','pasandola bien porque hoy es #viernes','#viernes']
   ];
   
   connection.query(sql, [values], function (err, result) {
@@ -107,8 +126,12 @@ function insert()
   });
 }
 
-module.exports.getStatistics = getStatistics;
-module.exports.getUsers      = getUsers;
-module.exports.getTags       = getTags;
+module.exports.getStatistics             = getStatistics;
+module.exports.getUsers                  = getUsers;
+module.exports.getTags                   = getTags;
 module.exports.getHighestOccuranceUsers  = getHighestOccuranceUsers;
+module.exports.getAllHighestOccuranceUsers  = getAllHighestOccuranceUsers;
+
 module.exports.getHighestOccuranceTags   = getHighestOccuranceTags;
+
+module.exports.insertRow                 = insertRow;

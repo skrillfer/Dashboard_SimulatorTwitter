@@ -17,6 +17,12 @@ socket.on('updateOccuranceUsers', function(data) {
     document.getElementById("elementOccuranceUsers").textContent = 'user:'+data.occuranceUser+"   Count:"+data.occuranceCount;
 });
 
+socket.on('updateAllOccuranceUsers', function(data) {
+    createPieChart(data.listUser,data.listCount,data.listColor);    
+});
+
+
 socket.on('updateOccuranceTags', function(data) {
     document.getElementById("elementOccuranceTags").textContent = 'tag:'+data.occuranceTag+"   Count:"+data.occuranceCount;
 });
+
