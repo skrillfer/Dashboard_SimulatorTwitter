@@ -1,16 +1,20 @@
 var pieChart = null;
 var histoChart = null;
-
+var zoomChartReference = null;
+//-------------------------
+var sourceChartPie = null; 
+var sourceChartHis = null; 
 function updateDashboard()
 {
     createPieChart();
+    createHistrogramChart();
 }
 
 function createPieChart(){
     if (pieChart){
         pieChart.destroy();
     }
-    sourceChart = {
+    sourceChartPie = {
         type: 'pie',
         data: {
         labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
@@ -27,7 +31,7 @@ function createPieChart(){
         }
         }
     }
-    pieChart = new Chart(document.getElementById('elementPieChart'), sourceChart);
+    pieChart = new Chart(document.getElementById('elementPieChart'), sourceChartPie);
 }
 
 function createHistrogramChart()
@@ -35,17 +39,42 @@ function createHistrogramChart()
     if (histoChart){
         histoChart.destroy();
     }
-    histoChart = new Chart(ctx, {
+    sourceChartHis = {
         type: 'bar',
-        data: data,
-        options: options
-    });
+        data: {
+          labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+          datasets: [
+            {
+              label: "Population (millions)",
+              backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+              data: [2478,5267,734,784,433]
+            }
+          ]
+        },
+        options: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: 'Predicted world population (millions) in 2050'
+          }
+        }
+    };
+
+    histoChart = new Chart(document.getElementById("elementHisChart"), sourceChartHis);
 }
 
-function zoomChart()
+function zoomChart(id)
 {
-    $("#modalZoom").modal()
-
-    new Chart(document.getElementById('elementChartZoom'), sourceChart);
-  
+    $("#modalZoom").modal();
+    if(zoomChartReference)
+    {
+        zoomChartReference.destroy();
+    }
+    if(id==1){
+        zoomChartReference = new Chart(document.getElementById('elementChartZoom'), sourceChartPie);
+    }else
+    {
+        zoomChartReference = new Chart(document.getElementById('elementChartZoom'), sourceChartHis);
+    }
+    
 }

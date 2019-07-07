@@ -1,4 +1,12 @@
+
+const dotenv = require('dotenv');
+dotenv.config();
+
 const path  = require('path')
+
+const connection = require('./database');
+
+//connection.mysqlDemo();
 
 var express = require('express');
 var app = express();
@@ -25,9 +33,11 @@ app.post('/data', function (req, res) {
     console.log(req.body)
     res.send("process complete");
 });
+
 server.listen(3000, function() {
 	console.log('Example app listening on port 3000!');
 });
+
 
 /*
 https://www.quora.com/How-do-I-send-data-from-Node-js-to-Python-and-get-back-JSONN-data-from-Python-to-Node-jss
