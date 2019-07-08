@@ -39,8 +39,6 @@ app.post('/data', function (req, res) {
       console.log('inser error:'+error);
       res.send("insert process error");
     }
-    
-    
 });
 
 io.on('connection', function(socket) {
