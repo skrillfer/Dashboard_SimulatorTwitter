@@ -28,7 +28,7 @@ function createPieChart(listUser,listCount,listColor){
         options: {
         title: {
             display: true,
-            text: 'Usuario vs Cantidad'
+            text: 'Los usuarios con mas tweets'
         }
         }
     }
@@ -57,7 +57,7 @@ function createHistrogramChart(listTag,listCount,listColor)
           legend: { display: false },
           title: {
             display: true,
-            text: 'Tags vs Cantidad'
+            text: 'Los tags mas ingresados'
           }
         }
     };
