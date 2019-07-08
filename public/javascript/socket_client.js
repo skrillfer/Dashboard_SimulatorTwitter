@@ -1,4 +1,4 @@
-var socket = io.connect('http://localhost:3000', { 'forceNew': true });
+var socket = io.connect('http://35.238.116.182:3000', { 'forceNew': true });
 
 socket.on('updateCountUsers', function(data) {
 	document.getElementById("elementUsers").textContent = data.countUsers;
