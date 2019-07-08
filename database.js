@@ -72,7 +72,7 @@ function getHighestOccuranceUsers(socket)
 function getAllHighestOccuranceUsers(socket)
 {
   connection.query(
-    "SELECT user, count(*) as count FROM `binnacle` GROUP BY user ORDER BY count DESC LIMIT 1",
+    "SELECT user, count(*) as count FROM `binnacle` GROUP BY user ORDER BY count DESC LIMIT 10",
     function(error, results, fields) {
       if (error) throw error ;
       listUser  = [];
