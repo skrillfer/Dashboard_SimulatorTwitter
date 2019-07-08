@@ -85,3 +85,10 @@ function clickButtonUpdate()
 {
     socket.emit('update_dashboard',{});
 }
+
+
+function clickButtonSearch()
+{
+    var wordSearch = document.getElementById("elementInputSearch").value;
+    socket.emit('mysqlLike',{'word':wordSearch});
+}

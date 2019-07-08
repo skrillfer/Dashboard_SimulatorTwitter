@@ -47,6 +47,9 @@ io.on('connection', function(socket) {
     databaseReference.getAllHighestOccuranceTags(socket);
     
   });
+  socket.on('mysqlLike',function(data){
+    console.log(data.word);
+  });
 });
 
 server.listen(3000, function() {

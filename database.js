@@ -119,6 +119,17 @@ function getAllHighestOccuranceTags(socket)
 }
 
 
+function selectLike(socket,word)
+{
+  connection.query(
+    "SELECT * FROM `binnacle` WHERE CustomerName LIKE '%"+word+"a%'",
+    function(error, results, fields) {
+      if (error) throw error;
+      console.log(results);
+    }
+  );
+}
+
 function select()
 {
   connection.query(
@@ -156,3 +167,4 @@ module.exports.getHighestOccuranceTags   = getHighestOccuranceTags;
 module.exports.getAllHighestOccuranceTags  = getAllHighestOccuranceTags;
 
 module.exports.insertRow                 = insertRow;
+module.exports.selectLike                 = selectLike;
