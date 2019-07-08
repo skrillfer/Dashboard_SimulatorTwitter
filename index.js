@@ -32,8 +32,15 @@ app.get('/home', function (req, res) {
 
 app.post('/data', function (req, res) {    
     //do stuff with the data here
-    console.log(req.body)
-    res.send("process complete");
+    try {
+      databaseReference.insertRow(req.body.categorys);
+      res.send("insert process complete");
+    } catch (error) {
+      console.log('inser error:'+error);
+      res.send("insert process error");
+    }
+    
+    
 });
 
 io.on('connection', function(socket) {
@@ -48,7 +55,7 @@ io.on('connection', function(socket) {
     
   });
   socket.on('mysqlLike',function(data){
-    console.log(data.word);
+    databaseReference.selectLike(socket,data.word);
   });
 });
 

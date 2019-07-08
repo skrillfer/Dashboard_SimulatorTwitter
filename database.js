@@ -122,33 +122,22 @@ function getAllHighestOccuranceTags(socket)
 function selectLike(socket,word)
 {
   connection.query(
-    "SELECT * FROM `binnacle` WHERE CustomerName LIKE '%"+word+"a%'",
+    "SELECT * FROM `binnacle` WHERE txt LIKE '%"+word+"%'",
     function(error, results, fields) {
       if (error) throw error;
-      console.log(results);
-    }
-  );
-}
-
-function select()
-{
-  connection.query(
-    "SELECT * FROM `binnacle` ",
-    function(error, results, fields) {
-      if (error) throw error;
-      console.log(results);
+      socket.emit('showTableModel',results);
     }
   );
 }
 
 
-function insertRow()
+
+function insertRow(dataJson)
 {
   var sql = "INSERT INTO binnacle (binnacle_id, name,user,txt,tag) VALUES ?";
   var values = [
-    [0, 'luis fernando ramirez santos', 'sxxq1','pasandola bien porque hoy es #viernes','#viernes'],
-    [0, 'Juan santos cabrera', 'sxxq1','pasandola bien porque hoy es #viernes','#viernes'],
-    [0, 'Ismael Santos Cabrera', 'sxxq1','pasandola bien porque hoy es #viernes','#viernes']
+    
+    [0, dataJson.nom, dataJson.usr,dataJson.txt,dataJson.categorys]
   ];
   
   connection.query(sql, [values], function (err, result) {

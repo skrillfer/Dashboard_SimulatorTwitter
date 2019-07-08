@@ -92,3 +92,26 @@ function clickButtonSearch()
     var wordSearch = document.getElementById("elementInputSearch").value;
     socket.emit('mysqlLike',{'word':wordSearch});
 }
+
+function showTableModel(data)
+{ 
+    // Get the <ul> element with id="myList"
+    var list = document.getElementById("bodyTable");
+
+    // If the <ul> element has any child nodes, remove its first child node
+    while(list.hasChildNodes()) {
+        list.removeChild(list.childNodes[0]);
+    }
+    var html ='';
+    data.forEach(element => {
+        html+= '<tr>'+
+                    '<td>'+element.name+'</td>'+
+                    '<td>'+element.user+'</td>'+
+                    '<td>'+element.txt+'</td>'+
+                    '<td>'+element.tag+'</td>'+
+                '</tr>';
+    });
+        
+    document.getElementById("bodyTable").innerHTML+=html;
+    $("#modalTable").modal();
+}

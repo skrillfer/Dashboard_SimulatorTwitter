@@ -2,6 +2,10 @@
 var socket = io.connect('http://localhost:3000', { 'forceNew': true });
 
 /* Received from Server */
+socket.on('showTableModel', function(data) {
+    showTableModel(data);
+});
+
 socket.on('updateCountUsers', function(data) {
 	document.getElementById("elementUsers").textContent = data.countUsers;
 });

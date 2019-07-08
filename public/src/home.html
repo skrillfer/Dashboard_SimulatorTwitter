@@ -71,6 +71,46 @@
         </div>
       </div>
     </div>
+
+    <!-- The Modal -->
+   <div class="modal fade" id="modalTable">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title" >Ocurrencias Encontradas</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body">
+              <div class="table-responsive">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Nombre</th>
+                        <th>Usuario</th>
+                        <th>Texto</th>
+                        <th>tag</th>
+                      </tr>
+                    </thead>
+                    <tbody id ="bodyTable">
+                      
+                    </tbody>
+                  </table>
+                </div>
+          </div>
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
   <!-- Page Wrapper -->
   <div id="wrapper">
     <hr/>
@@ -114,7 +154,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total de Tweets</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="elementTweets">$40,000</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="elementTweets">0</div>
                     </div>
                   </div>
                 </div>
@@ -128,7 +168,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total de Usuarios</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="elementUsers">$215,000</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="elementUsers">0</div>
                     </div>
                     
                   </div>
@@ -145,7 +185,7 @@
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total de Categorias</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="elementTags">50%</div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="elementTags">0</div>
                         </div>
                       </div>
                     </div>
@@ -198,7 +238,7 @@
                       <div class="card bg-primary text-white shadow">
                         <div class="card-body">
                             El usuario con más Tweets creados.
-                          <div class="text-white-50 large" id="elementOccuranceUsers">#4e73df</div>
+                          <div class="text-white-50 large" id="elementOccuranceUsers">0</div>
                         </div>
                       </div>
                     </div>
@@ -207,7 +247,7 @@
                       <div class="card bg-success text-white shadow">
                         <div class="card-body">
                             La categoría con más Tweets creados.
-                          <div class="text-white-50 large" id="elementOccuranceTags">#1cc88a</div>
+                          <div class="text-white-50 large" id="elementOccuranceTags">0</div>
                         </div>
                       </div>
                     </div>
