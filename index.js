@@ -32,8 +32,10 @@ app.get('/home', function (req, res) {
 
 app.post('/data', function (req, res) {    
     //do stuff with the data here
+    console.log('server receive');
+    console.log(req.body);
     try {
-      databaseReference.insertRow(req.body.categorys);
+      databaseReference.insertRow(req.body);
       res.send("insert process complete");
     } catch (error) {
       console.log('inser error:'+error);
